@@ -1,0 +1,123 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* Improve content visibility for performance */
+  img, video {
+    content-visibility: auto;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Admin table scrolling styles */
+  .admin-table-container {
+    @apply w-full overflow-hidden;
+  }
+  
+  .admin-table-scroll {
+    @apply max-h-[70vh] overflow-y-auto;
+  }
+}
+
+@layer utilities {
+  .transition-standard {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Add progressive loading for images */
+  .progressive-image {
+    @apply transition-opacity duration-300 ease-in-out opacity-0;
+  }
+  
+  .progressive-image.loaded {
+    @apply opacity-100;
+  }
+
+  /* Optimized animations for better performance */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+    will-change: opacity;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+    will-change: transform, opacity;
+  }
+}
+
+/* Define animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Add responsive breakpoint for extra small screens */
+@media (min-width: 475px) {
+  .xs\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Fix mobile layout issues */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  h1 {
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  .overflow-fix {
+    overflow-x: hidden;
+  }
+}
+
+/* Admin table scrollbar styles */
+.admin-table-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admin-table-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.admin-table-scroll::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 4px;
+}
+
+.admin-table-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.5);
+}
